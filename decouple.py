@@ -10,8 +10,8 @@ if len(args) != 3:
 masked = args[1]
 unmasked = args[2]
 counter = 0
-print(masked)
-print(unmasked)
+#print(masked)
+#print(unmasked)
 
 for root, subDir, files in os.walk(masked):
     if files:
