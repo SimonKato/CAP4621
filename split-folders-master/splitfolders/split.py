@@ -258,3 +258,5 @@ def copy_files(files_type, class_dir, output, prog_bar):
                     shutil.copy2(x, full_path)
             else:
                 shutil.copy2(f, full_path)
+
+ratio("/home/kato/docs/UF/s5/ai/project/pytorch-CycleGAN-and-pix2pix/datasets/cap_dataset", "/home/kato/docs/UF/s5/ai/project/pytorch-CycleGAN-and-pix2pix/datasets/data", 1337, (.8,0,.2))
