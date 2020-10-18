@@ -1,16 +1,21 @@
 import os
 import shutil
 
-for root, subDir, files in os.walk("/home/kato/docs/UF/s5/ai/project/pytorch-CycleGAN-and-pix2pix/datasets/self-built-masked-face-recognition-dataset/AFDB_face_dataset"):
+counter = 0
+
+for root, subDir, files in os.walk("/content/pytorch-CycleGAN-and-pix2pix/datasets/cloned-repo-masked"):
     if files:
         for file in files:
-            shutil.copyfile(root + '/' + file, "/home/kato/docs/UF/s5/ai/project/pytorch-CycleGAN-and-pix2pix/datasets/cap_dataset/unmasked/" + file)
+            shutil.copyfile(root + '/' + file, "/content/pytorch-CycleGAN-and-pix2pix/datasets/cap_dataset/masked/" + str(counter) + file)
+            counter += 1
     else:
         continue
 
-for root, subDir, files in os.walk("/home/kato/docs/UF/s5/ai/project/pytorch-CycleGAN-and-pix2pix/datasets/self-built-masked-face-recognition-dataset/AFDB_masked_face_dataset"):
+counter = 0
+for root, subDir, files in os.walk("/content/pytorch-CycleGAN-and-pix2pix/datasets/cloned-repo-unmasked"):
     if files:
         for file in files:
-            shutil.copyfile(root + '/' + file, "/home/kato/docs/UF/s5/ai/project/pytorch-CycleGAN-and-pix2pix/datasets/cap_dataset/masked/" + file)
+            shutil.copyfile(root + '/' + file, "/content/pytorch-CycleGAN-and-pix2pix/datasets/cap_dataset/unmasked/" + str(counter) + file)
+            counter += 1
     else:
         continue
