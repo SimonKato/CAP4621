@@ -36,6 +36,7 @@ counter = 0
 # is there a face that is of reasonable size in the photo?
 # could modify to crop image to enlargen faces
 
+# this uses cv2 Cacade Classifier. Does not do too well.
 def isFace(file):
     face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
     img = cv2.imread(file)
@@ -57,32 +58,42 @@ def isFace(file):
     #         return False
     # return True
 
-
 def isFaceAdvanced(file):
+    #preload the model
     net = cv2.dnn.readNetFromCaffe('deploy.prototxt.txt','res10_300x300_ssd_iter_140000.caffemodel')
+
+    #read in data, get statistics
     img = cv2.imread(file)
     (h,w) = img.shape[:2]
-    blob = cv2.dnn.blobFromImage(cv2.resize(img,(300,300)),1.0, (300,300),(104.0,177.0,123.0))
-
+    print("size of original: ",h," ",w)
+    blob = cv2.dnn.blobFromImage(cv2.resize(img , (300, 300)),
+                                1.0,
+                                (300,300),
+                                (104.0,177.0,123.0))
     net.setInput(blob)
     detections = net.forward()
-    # print(detections)
+
+    faces = []
     for i in range(0,detections.shape[2]):
         confidence = detections[0,0,i,2]
         
         if confidence > 0.9:
             print(confidence)
-            # print(detections[0,0,i,3:7])
-            box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
+            box = detections[0,0,i, 3:7]*np.array([w,h,w,h])
+            
+            box = box.astype("int")
             print(box)
-            (startX, startY, endX, endY) = box.astype("int")
-            print("StartX: ",startX, " StartY: ", startY)
-            text = "{:.2f}%".format(confidence * 100)
-
-		    
-            cv2.rectangle(img, (startX, startY), (endX, endY), (255, 0, 0), 2)
-		   
-    cv2.imshow("Output", img)
+            faces.append(box)
+            # newimg = img[startY:endY, startX:endX]
+            # #resize the new image
+            # r = 256 / newimg.shape[1]
+            # dim = (256, int(newimg.shape[0]* r))
+            # resized = cv2.resize(newimg,dim,interpolation=cv2.INTER_AREA)
+            # newimages.append(resized)
+    # if len(faces) != 1:
+    #     return False
+    # if ((h*w) * 0.7)
+    cv2.imshow("output",img)
     cv2.waitKey(0)
 
 
