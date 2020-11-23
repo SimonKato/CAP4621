@@ -15,13 +15,14 @@ def main():
     masked = args[1]
     unmasked = args[2]
     counter = 0
+    net = cv2.dnn.readNetFromCaffe('/content/CAP4621/deploy.prototxt.txt','/content/CAP4621/res10_300x300_ssd_iter_140000.caffemodel')
     #print(masked)
     #print(unmasked)
 
     for root, subDir, files in os.walk(masked):
         if files:
             for file in files:
-                if isFaceAdvanced(root + '/'+ file):
+                if isFaceAdvanced(root + '/'+ file,net):
                     shutil.copyfile(root + '/' + file, "/content/pytorch-CycleGAN-and-pix2pix/datasets/cap_dataset/masked/" + str(counter) + file)
                     counter += 1
         else:
@@ -31,7 +32,7 @@ def main():
     for root, subDir, files in os.walk(unmasked):
         if files:
             for file in files:
-                if isFaceAdvanced(root + '/'+ file):
+                if isFaceAdvanced(root + '/'+ file,net):
                     shutil.copyfile(root + '/' + file, "/content/pytorch-CycleGAN-and-pix2pix/datasets/cap_dataset/unmasked/" + str(counter) + file)
                     counter += 1
         else:
@@ -70,10 +71,10 @@ def isFace(file):
 
 
 #----------------------CAFFENET DNN-------------------------------------------#
-def isFaceAdvanced(file):
+def isFaceAdvanced(file,net):
     #preload the model
     # net = cv2.dnn.readNetFromCaffe('deploy.prototxt.txt','res10_300x300_ssd_iter_140000.caffemodel')
-    net = cv2.dnn.readNetFromCaffe('/content/CAP4621/deploy.prototxt.txt','/content/CAP4621/res10_300x300_ssd_iter_140000.caffemodel')
+    # net = cv2.dnn.readNetFromCaffe('/content/CAP4621/deploy.prototxt.txt','/content/CAP4621/res10_300x300_ssd_iter_140000.caffemodel')
     #read in data, get statistics
     img = cv2.imread(file)
 
