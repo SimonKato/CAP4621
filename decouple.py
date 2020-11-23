@@ -78,7 +78,7 @@ def isFaceAdvanced(file):
     img = cv2.imread(file)
 
     #if not a valid file, return 
-    if not img:
+    if img.size == 0:
         return False
 
     (h,w) = img.shape[:2]
