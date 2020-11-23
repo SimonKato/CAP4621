@@ -97,7 +97,7 @@ def isFaceAdvanced(file):
         if confidence > 0.9:
             # print(confidence)
             box = detections[0,0,i, 3:7]*np.array([w,h,w,h])
-            print(box)
+            # print(box)
             (startX,startY,endX,endY) = box.astype("int")
             # print(box)
             # faces.append(box)
