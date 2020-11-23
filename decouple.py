@@ -6,34 +6,35 @@ import numpy as np
 import argparse
 import pandas as pd
 #get arguments
-args = sys.argv
-if len(args) != 3:
-    raise Exception("Structure: python decouple.py maskedPath unmaskedPath")
+def main():
+    args = sys.argv
+    if len(args) != 3:
+        raise Exception("Structure: python decouple.py maskedPath unmaskedPath")
 
-masked = args[1]
-unmasked = args[2]
-counter = 0
-#print(masked)
-#print(unmasked)
+    masked = args[1]
+    unmasked = args[2]
+    counter = 0
+    #print(masked)
+    #print(unmasked)
 
-for root, subDir, files in os.walk(masked):
-    if files:
-        for file in files:
-            if isFaceAdvanced(root + '/'+ file):
-                shutil.copyfile(root + '/' + file, "/content/pytorch-CycleGAN-and-pix2pix/datasets/cap_dataset/masked/" + str(counter) + file)
-                counter += 1
-    else:
-        continue
+    for root, subDir, files in os.walk(masked):
+        if files:
+            for file in files:
+                if isFaceAdvanced(root + '/'+ file):
+                    shutil.copyfile(root + '/' + file, "/content/pytorch-CycleGAN-and-pix2pix/datasets/cap_dataset/masked/" + str(counter) + file)
+                    counter += 1
+        else:
+            continue
 
-counter = 0
-for root, subDir, files in os.walk(unmasked):
-    if files:
-        for file in files:
-            if isFaceAdvanced(root + '/'+ file):
-                shutil.copyfile(root + '/' + file, "/content/pytorch-CycleGAN-and-pix2pix/datasets/cap_dataset/unmasked/" + str(counter) + file)
-                counter += 1
-    else:
-        continue
+    counter = 0
+    for root, subDir, files in os.walk(unmasked):
+        if files:
+            for file in files:
+                if isFaceAdvanced(root + '/'+ file):
+                    shutil.copyfile(root + '/' + file, "/content/pytorch-CycleGAN-and-pix2pix/datasets/cap_dataset/unmasked/" + str(counter) + file)
+                    counter += 1
+        else:
+            continue
 
 
 #-------------------------------MORE PREPROCESSING-------------------------#
@@ -114,8 +115,9 @@ def isFaceAdvanced(file):
     # cv2.waitKey(0)
 
 
-# -------------------FOR TESTING PURPOSES -----------------------#
+# -------------------MAIN -----------------------#
 
-# if __name__=="__main__":
-#     print( os.path.dirname(__file__))
-#     isFaceAdvanced("0031.jpg")
+if __name__=="__main__":
+    # print( os.path.dirname(__file__))
+    # isFaceAdvanced("0031.jpg")
+    main()
