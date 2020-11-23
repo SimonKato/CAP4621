@@ -7,6 +7,7 @@ import argparse
 import pandas as pd
 #get arguments
 def main():
+    print("---------------------------Decoupling-----------------------------------------")
     args = sys.argv
     if len(args) != 3:
         raise Exception("Structure: python decouple.py maskedPath unmaskedPath")
@@ -43,6 +44,7 @@ def main():
 
 # --------------------CASCADE CLASSIFIER, NOT ACCURATE----------------------#
 def isFace(file):
+    print(file)
     face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
     img = cv2.imread(file)
 
@@ -70,8 +72,8 @@ def isFace(file):
 #----------------------CAFFENET DNN-------------------------------------------#
 def isFaceAdvanced(file):
     #preload the model
-    net = cv2.dnn.readNetFromCaffe('deploy.prototxt.txt','res10_300x300_ssd_iter_140000.caffemodel')
-
+    # net = cv2.dnn.readNetFromCaffe('deploy.prototxt.txt','res10_300x300_ssd_iter_140000.caffemodel')
+    net = cv2.dnn.readNetFromCaffe('/content/CAP4621/deploy.prototxt.txt','/content/CAP4621/res10_300x300_ssd_iter_140000.caffemodel')
     #read in data, get statistics
     img = cv2.imread(file)
 
