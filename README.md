@@ -55,3 +55,39 @@ be sure to use the --continue_train parameter to continue training. The epoch wh
        └──...        
        
 ```
+
+# CycleGAN Assumed
+```
+  ├── Data (Dataset Folder)  
+     └── TrainA
+        ├── image_1.jpg
+        ├── image_2.jpg
+        ├── image_3.jpg
+        ├── ...    
+     └── TrainB
+        ├── image_1.jpg
+        ├── image_2.jpg
+        ├── image_3.jpg
+        ├── ...
+     └──TestA
+        ├── image_1.jpg
+        ├── image_2.jpg
+        ├── image_3.jpg
+        ├── ...
+     └──TestB
+        ├── image_1.jpg
+        ├── image_2.jpg
+        ├── image_3.jpg
+        ├── ...
+     └──ValA (optional)
+        ├── image_1.jpg
+        ├── image_2.jpg
+        ├── image_3.jpg
+        ├── ...
+     └──ValB (optional)
+        ├── image_1.jpg
+        ├── image_2.jpg
+        ├── image_3.jpg
+        ├── ...
+     
+```
