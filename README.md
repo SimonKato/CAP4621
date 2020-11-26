@@ -14,3 +14,44 @@ decouple.py must also be run after split-folders has been run.
 
 # Important Note:
 be sure to use the --continue_train parameter to continue training. The epoch which was last used was --epoch_count 2
+
+# Asssumed Input Data Structure:
+```
+  ├── Data (Dataset Folder)  
+     └── Masked 
+       └── Person_1  
+           ├── image_1.jpg
+           ├── image_2.jpg
+           ├── image_3.jpg
+           ├── ...
+       └── Person_2
+           ├── image_1.jpg
+           ├── image_2.jpg
+           ├── image_3.jpg
+           ├── ...
+       └── Person_3
+           ├── image_1.jpg
+           ├── image_2.jpg
+           ├── image_3.jpg
+           ├── ...
+       └──...  
+         
+     └── Unmasked 
+       └── Person_1  
+           ├── image_1.jpg
+           ├── image_2.jpg
+           ├── image_3.jpg
+           ├── ...
+       └── Person_2
+           ├── image_1.jpg
+           ├── image_2.jpg
+           ├── image_3.jpg
+           ├── ...
+       └── Person_3
+           ├── image_1.jpg
+           ├── image_2.jpg
+           ├── image_3.jpg
+           ├── ...
+       └──...        
+       
+```
