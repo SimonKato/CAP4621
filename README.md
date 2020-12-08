@@ -11,6 +11,7 @@ decouple.py must also be run after split-folders has been run.
  - Discriminator code in CAP4621_Discriminator.ipynb
  - decouple.py includes image preprocessing and face recognition
  - deploy.prototype.txt, haarcascade_frontalface_default.xml, and res10_300x300_ssd_iter_140000.caffemodel are all prebuilt models from opencv
+ - Checkin_3_Demo.ipynb includes demo with 100 preselected images for CycleGAN and input for discriminator
 
 # Important Note:
 be sure to use the --continue_train parameter to continue training. The epoch which was last used was --epoch_count 2
